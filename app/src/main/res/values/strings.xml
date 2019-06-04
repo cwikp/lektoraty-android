@@ -2,4 +2,6 @@
     <string name="app_name">Lektoraty</string>
     <string name="action_settings">Settings</string>
     <string name="click_me">Click me!</string>
+    <string name="max_value">MAX!!</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

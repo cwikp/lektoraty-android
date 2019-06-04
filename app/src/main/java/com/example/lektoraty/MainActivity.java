@@ -1,5 +1,6 @@
 package com.example.lektoraty;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -63,8 +64,14 @@ public class MainActivity extends AppCompatActivity {
             myNumber++;
             textView.setText(String.valueOf(myNumber));
         } else {
-            textView.setText("MAX!!");
+            textView.setText(getResources().getString(R.string.max_value));
             textView.setTextColor(Color.RED);
         }
+    }
+
+    public void onStartActivityClicked(View view) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra("message_label", "message content");
+        this.startActivity(intent);
     }
 }
