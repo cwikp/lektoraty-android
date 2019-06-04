@@ -1,6 +1,9 @@
 package com.example.lektoraty;
 
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -24,6 +27,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private String serverKey = "";
     private LatLng origin = new LatLng(50.062299, 19.923949);
     private LatLng destination = new LatLng(50.064696, 19.926052);
+    private LocationManager mLocationManager;
 
 
     @Override
@@ -32,6 +36,9 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         setContentView(R.layout.activity_map_fragment);
 
         ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000L, 100f, mLocationListener);
     }
 
     @Override
@@ -71,4 +78,26 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
             System.out.println(">>Direction not Ok");
         }
     }
+
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            System.out.println("Location>> " + location);
+        }
+
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+    };
 }
